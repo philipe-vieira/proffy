@@ -1,18 +1,68 @@
-import React, { useState } from 'react'
+import React, { useState, FormEvent } from 'react'
+import { useHistory } from 'react-router-dom'
 import './styles.css'
 import PageHeader from '../../components/PageHeader'
 import warningIcon from '../../assets/images/icons/warning.svg'
 import Input from '../../components/Input'
 import Select from '../../components/Select'
 import Textarea from '../../components/Textarea'
+import api from '../../services/api'
 
 const TeacherForm: React.FC = () => {
+  const history = useHistory()
   const [scheduleItems, setSchedulesItems] = useState([
-    { week_day: 1, from: '', to: '' },
+    { week_day: '1', from: '08:00', to: '10:00' },
   ])
+  const [name, setName] = useState('')
+  const [avatar, setAvatar] = useState('')
+  const [whatsapp, setWhatsapp] = useState('')
+  const [bio, setBio] = useState('')
+  const [subject, setSubject] = useState('')
+  const [cost, setCost] = useState('')
 
   function addNewScheduleItem() {
-    setSchedulesItems([...scheduleItems, { week_day: 1, from: '', to: '' }])
+    setSchedulesItems([
+      ...scheduleItems,
+      { week_day: '1', from: '08:00', to: '10:00' },
+    ])
+  }
+
+  function setSchedulesItemValue(
+    position: number,
+    field: string,
+    value: string
+  ) {
+    const updatedScheduleItems = scheduleItems.map((scheduleItem, index) => {
+      if (index === position) {
+        return { ...scheduleItem, [field]: value }
+      }
+      return scheduleItem
+    })
+
+    setSchedulesItems(updatedScheduleItems)
+  }
+
+  function handleCreateClass(event: FormEvent) {
+    event.preventDefault()
+
+    api
+      .post('classes', {
+        name,
+        avatar,
+        whatsapp,
+        bio,
+        subject,
+        cost: Number(cost),
+        schedules: scheduleItems,
+      })
+      .then(() => {
+        alert('Cadastro realizado com sucesso!')
+        history.push('/')
+      })
+      .catch((err) => {
+        console.error(err)
+        alert('Erro no cadastro!')
+      })
   }
 
   return (
@@ -23,14 +73,42 @@ const TeacherForm: React.FC = () => {
       />
 
       <main>
-        <form>
+        <form onSubmit={(event) => handleCreateClass(event)}>
           <fieldset>
             <legend>Seus dados</legend>
 
-            <Input label="Nome Completo" name="name" />
-            <Input label="Avatar" name="avatar" />
-            <Input label="WhatsApp" name="whatsapp" />
-            <Textarea label="Biografia" name="bio" />
+            <Input
+              label="Nome Completo"
+              name="name"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value)
+              }}
+            />
+            <Input
+              label="Avatar"
+              name="avatar"
+              value={avatar}
+              onChange={(e) => {
+                setAvatar(e.target.value)
+              }}
+            />
+            <Input
+              label="WhatsApp"
+              name="whatsapp"
+              value={whatsapp}
+              onChange={(e) => {
+                setWhatsapp(e.target.value)
+              }}
+            />
+            <Textarea
+              label="Biografia"
+              name="bio"
+              value={bio}
+              onChange={(e) => {
+                setBio(e.target.value)
+              }}
+            />
           </fieldset>
           <fieldset>
             <legend>Sobre a aula</legend>
@@ -38,6 +116,10 @@ const TeacherForm: React.FC = () => {
             <Select
               label="Matéria"
               name="subject"
+              value={subject}
+              onChange={(e) => {
+                setSubject(e.target.value)
+              }}
               options={[
                 { value: 'Artes', label: 'Artes' },
                 { value: 'Biologia', label: 'Biologia' },
@@ -46,12 +128,20 @@ const TeacherForm: React.FC = () => {
                 { value: 'Geografia', label: 'Geografia' },
                 { value: 'Historia', label: 'Historia' },
                 { value: 'Matemática', label: 'Matemática' },
-                { value: 'Português', label: 'Historia' },
+                { value: 'Português', label: 'Português' },
                 { value: 'Química', label: 'Química' },
               ]}
             />
 
-            <Input label="Custo por sua hora/aula" name="cost" />
+            <Input
+              type="number"
+              label="Custo por sua hora/aula"
+              name="cost"
+              value={cost}
+              onChange={(e) => {
+                setCost(e.target.value)
+              }}
+            />
           </fieldset>
 
           <fieldset>
@@ -70,6 +160,10 @@ const TeacherForm: React.FC = () => {
                 <Select
                   label="Dia da semana"
                   name="week_day"
+                  value={scheduleItem.week_day}
+                  onChange={(event) =>
+                    setSchedulesItemValue(index, 'week_day', event.target.value)
+                  }
                   options={[
                     { value: '0', label: 'Domingo' },
                     { value: '1', label: 'Segunda-feira' },
@@ -80,8 +174,24 @@ const TeacherForm: React.FC = () => {
                     { value: '6', label: 'Sábado' },
                   ]}
                 />{' '}
-                <Input name="from" label="das" type="time" />
-                <Input name="to" label="até" type="time" />
+                <Input
+                  type="time"
+                  name="from"
+                  label="das"
+                  value={scheduleItem.from}
+                  onChange={(event) =>
+                    setSchedulesItemValue(index, 'from', event.target.value)
+                  }
+                />
+                <Input
+                  type="time"
+                  name="to"
+                  label="até"
+                  value={scheduleItem.to}
+                  onChange={(event) =>
+                    setSchedulesItemValue(index, 'to', event.target.value)
+                  }
+                />
               </div>
             ))}
           </fieldset>

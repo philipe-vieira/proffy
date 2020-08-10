@@ -7,6 +7,7 @@ import landingImg from '../../assets/images/landing.png';
 import studyIcon from '../../assets/images/icons/study.png';
 import giveClassesIcon from '../../assets/images/icons/give-classes.png';
 import heartIcon from '../../assets/images/icons/heart.png';
+import { RectButton } from 'react-native-gesture-handler';
 
 const Landing: React.FC = () => {
   const { navigate } = useNavigation();
@@ -25,17 +26,17 @@ const Landing: React.FC = () => {
       </Text>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button, styles.buttonPrimary]}>
+        <RectButton style={[styles.button, styles.buttonPrimary]}>
           <Image source={studyIcon} />
           <Text style={styles.buttonText}>Estudar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </RectButton>
+        <RectButton
           style={[styles.button, styles.buttonSecondary]}
           onPress={handleNavigateToGiveClassesPage}
         >
           <Image source={giveClassesIcon} />
           <Text style={styles.buttonText}>Dar aulas</Text>
-        </TouchableOpacity>
+        </RectButton>
       </View>
       <Text style={styles.totalConnections}>
         Total de 43 conexões já realizadas <Image source={heartIcon} />

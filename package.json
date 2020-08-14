@@ -1,0 +1,21 @@
+{
+  "name": "proffy",
+  "version": "1.0",
+  "main": "index.js",
+  "repository": "git@github.com:philipe-vieira/proffy.git",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "./eslint-config",
+      "./mobile",
+      "./server",
+      "./web"
+    ]
+  },
+  "author": "Philipe Vieira <philipefilho@hotmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.9.7",
+    "@proffy/eslint-config": "*"
+  }
+}

@@ -1,0 +1,24 @@
+POST http://localhost:3333/classes/ HTTP/1.1
+Content-Type: application/json
+
+{
+	"name": "Philipe Vieira",
+	"avatar": "https://web.whatsapp.com/pp?e=https%3A%2F%2Fpps.whatsapp.net%2Fv%2Ft61.24694-24%2F104652030_278208050191166_1801135147483068817_n.jpg%3Foh%3Dedc339f8dbb98bebebc8af25cc22d0a9%26oe%3D5F311496&t=s&u=558688264075%40c.us&i=1592599971&n=OPg42E8oM5a7hqNinEe0iS2UNsW%2B4ZH8w2E6exP0k9E%3D",
+	"whatsapp": "86 88264075",
+	"bio": "Um belo proffy",
+	"subject": "matemática",
+	"cost": 50,
+	"schedules": [
+		{"week_day": 1, "from": "8:00", "to": "12:00"},
+		{"week_day": 3, "from": "10:00", "to": "18:00"},
+		{"week_day": 4, "from": "8:00", "to": "12:00"}
+	]
+}
+
+###
+
+GET http://localhost:3333/classes/?week_day=1&&subject=matemática&&time=10:00 HTTP/1.1
+Content-Type: application/json
+
+###
+

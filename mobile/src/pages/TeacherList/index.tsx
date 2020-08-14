@@ -8,7 +8,7 @@ import TeacherItem, { Teacher } from '../../components/TeacherItem';
 import api from '../../services/api';
 
 const TeacherList: React.FC = () => {
-  const [isFilterVisible, setIsFilterVisible] = useState(false);
+  const [isFilterVisible, setIsFilterVisible] = useState(true);
   const [teachers, setTeachers] = useState([]);
   const [subject, setSubject] = useState('');
   const [week_day, setWeekDay] = useState('');

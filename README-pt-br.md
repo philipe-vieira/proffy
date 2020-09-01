@@ -9,7 +9,7 @@
   <img alt="GitHub" src="https://img.shields.io/github/license/philipe-vieira/proffy?color=%238257e5">
 </div>
 
-<br>
+<br><br>
 
 <p align="center">
   <a href="#tv-demonstração">Demonstração</a> | 
@@ -17,6 +17,7 @@
   <a href="#runner-como-executar-este-projeto">Como executar</a> | 
   <a href="#book-licença">Licença</a>
 </p>
+<br>
 
 > Este projeto foi desenvolvido na Next Level week #2 criada pela [RocketSeat](https://rocketseat.com.br/)
 

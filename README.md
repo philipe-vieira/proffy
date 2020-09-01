@@ -20,9 +20,13 @@
 
 <br>
 
+###### Read this page in [Portuguese](README-pt-br.md)
+
+<br><br>
+
 > This project was be developed in Next Level week #2 made by [RocketSeat](https://rocketseat.com.br/)
 
-###### Read this page in [Portuguese](README-pt-br.md)
+<br>
 
 # :tv: Demo
 

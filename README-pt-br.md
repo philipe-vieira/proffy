@@ -19,9 +19,13 @@
 </p>
 <br>
 
+###### Ler esta página em [Inglês](README.md)
+
+<br><br>
+
 > Este projeto foi desenvolvido na Next Level week #2 criada pela [RocketSeat](https://rocketseat.com.br/)
 
-###### Ler esta página em [Inglês](README.md)
+<br>
 
 # :tv: Demonstração
 
@@ -45,7 +49,7 @@ Visite o site [proffy-philipe.netlify.app](https://proffy-philipe.netlify.app/)
 
 # :runner: Como executar este projeto
 
-``` bash
+```bash
 # Clonar este repositório
 $ git clone https://github.com/philipe-vieira/proffy.git
 

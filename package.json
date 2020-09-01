@@ -14,6 +14,12 @@
   },
   "author": "Philipe Vieira <philipefilho@hotmail.com>",
   "license": "MIT",
+  "scripts": {
+    "api:run": "cd server; yarn knex:migrate:run; yarn start",
+    "api:run-dev": "cd server; yarn knex:migrate:run; yarn dev",
+    "web": "cd web; yarn start",
+    "mobile": "cd mobile; yarn start"
+  },
   "devDependencies": {
     "typescript": "^3.9.7",
     "@proffy/eslint-config": "*"
